@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+// ---- Themes ---- //
+$colorPrimary: #4692CB;
+$colorSecondary: #A89BE3;
+$colorOptional: #9E67D4;
+$colorText: #040B0E;
+$colorBackground: #F9FBFD;
+$colorWarning: rgb(255, 200, 0);
+
+// ---- Reset Defaults ---- //
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// ---- Defaults ---- //
+$heightBody: 100svh;
+$heightNav: 3rem;
+$heightFooter: 2rem;
+$widthClamp: clamp(200px, 50%, 400px);
+$transition: all 400ms ease-in-out;
+$outline: $colorSecondary;
+
+body {
+  min-height: $heightBody;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  color: $colorText;
+  background-color: $colorBackground;
+  background-image: url('../public/pexels-luis-leon-2569189.jpg');
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+// ---- Status Message ---- //
+.errMsg {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  font-weight: bold;
+  color: $colorWarning;
+}
+
+.errInput {
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  color: $colorWarning;
+}
+
+// ---- Mixins ---- //
+@mixin flex($direction, $justify, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// ---- Navbar ---- //
+nav {
+  @include flex(row,space-between,center);
+  height: $heightNav;
+  $linkColor: $colorBackground;
+  background-color: $colorPrimary;
+  a, button {
+    @include flex(row,center,center);
+    max-height: $heightNav;
+    font-size: 1.5rem;
+    border: none;
+    padding: 1rem;
+    text-decoration: none;
+    color: $linkColor;
+    background: none;
+    transition: $transition;
+  }
+  button {
+    margin-left: auto;
+  }
+  a:hover,
+  button:hover {
+    cursor: pointer;
+    color: $colorText;
+    background-color: $colorBackground;
+  }
+  a:focus,
+  button:focus {
+    outline-color: $outline;
+  }
+} 
+
+// ---- Footer ---- //
+footer {
+  @include flex(row,center,center);
+  height: $heightFooter;
+  text-align: center;
+  border-top: 1px solid $colorText;
+  border-bottom: 1px solid $colorText;
+  color: $colorBackground;
+  background-color: $colorPrimary;
+}
+
+// ---- Main ---- //
+main {
+  @include flex(column,center,center);
+  min-height: calc($heightBody - ($heightNav + $heightFooter));
+  padding: 1rem;
+}
+
+// ---- Forms ---- //
+.form_login,
+.form_register {
+  @include flex(column,center,flex-start);
+  width: $widthClamp;
+  border: 1px solid $colorOptional;
+  border-radius: 2px;
+  padding: 0.5rem 1rem;
+  background-color: $colorPrimary;
+  h2 {
+    width: 100%;
+    text-align: center;
+  }
+  label {
+    @include flex(row,space-between,center);
+    width: 100%;
+    margin: 0.5rem 0 0 0;
+    span {
+      padding: 0 0.25rem;
+      svg {
+        display: block;
+        filter: invert(1);
+        transition: $transition;
+      }
+      svg:hover {
+        cursor: pointer;
+        filter: invert(0);
+      }
+    }
+  }
+  input {
+    width: 100%;
+    border-radius: 2px;
+    border:none;
+    padding: 0.25rem;
+  }
+  input:focus,
+  button:focus,
+  p:focus {
+    outline-color: $outline;
+  }
+  button[type=submit] {
+    font-weight: bold;
+    padding: 0.25rem 1rem;
+    margin: 1rem 0;
+    justify-self: center;
+    align-self: center;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: $colorBackground;
+    background-color: $colorOptional;
+    transition: $transition;
+  }
+  button:disabled {
+    cursor: default;
+    color: $colorBackground;
+    border: 1px solid transparent;
+    background-color: $colorSecondary;
+  }
+  button[type=submit]:hover,
+  button[type=submit]:focus {
+    cursor: pointer;
+    border: 1px solid $colorBackground;
+  }
+}
+.form_type {
+  text-align: center;
+  justify-self: center;
+  align-self: center;
+  padding: 0.25rem 0.5rem; 
+  color: $colorBackground;
+  background: none;
+  transition: $transition;
+  border: none
+}
+.form_type:hover,
+.form_type:focus {
+  cursor: pointer;
+  border:none;
+  text-decoration: underline;
+}
+
+// ---- Account Page ---- //
+.acc_page {
+  @include flex(column,flex-start,center);
+  padding: 0;
+  .acc_header {
+    width: 100%;
+    text-align: center;
+    background-color: $colorBackground;
+    h1 {
+      font-size: 1.5rem;
+    }
+    h2,p {
+      font-size: 0.75rem;
+    }
+  }
+}
+.acc_details {
+  form {
+    @include flex(column,center,center);
+    width: 100%;
+    max-width: 40ch;
+    margin: 1rem;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    border: 1px solid $colorOptional;
+    border-radius: 2px;
+    background-color: $colorPrimary;
+    h2 {
+      font-size: 1.25rem;
+      text-transform: capitalize;
+    }
+    label {
+      width: 100%;
+      text-align: left;
+    }
+    input {
+      width: 100%;
+      margin-bottom: 0.25rem;
+      padding: 0.25rem;
+      outline-color: $colorSecondary;
+    }
+    button {
+      font-weight: bold;
+      padding: 0.25rem 1rem;
+      margin: 0.25rem 0;
+      justify-self: center;
+      align-self: center;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      color: $colorBackground;
+      background-color: $colorOptional;
+      transition: $transition;
+    }
+    button:hover {
+      cursor: pointer;
+      border: 1px solid $colorBackground;
+    }
+    button:disabled {
+      display: none;
+      cursor: default;
+      color: $colorBackground;
+      border: 1px solid transparent;
+      background-color: $colorSecondary;
+    }
+    button.show[type=button] {
+      display: flex;
+    }
+  }
+}
+
