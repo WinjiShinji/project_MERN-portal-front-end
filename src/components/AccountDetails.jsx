@@ -1,24 +1,13 @@
-import { useContext } from "react"
-import AccountField from "./AccountField"
-import SiteContext from "../context/SiteContext"
+import AccountDelete from "./AccountDelete"
 import AccountPasswordChange from "./AccountPasswordChange"
+import AccountUsername from "./AccountUsername"
 
 const AccountDetails = () => {
-  const { state } = useContext(SiteContext)
-
   return (
     <section className="acc_details">
-      <AccountField 
-        field={'username'}
-        type={'text'} 
-        userInfo={state.userInfo.username}
-      />
-      <AccountField 
-        field={'email'}
-        type={'email'} 
-        userInfo={state.userInfo.email || 'No email'} 
-      />
+      <AccountUsername />
       <AccountPasswordChange />
+      <AccountDelete />
     </section>
   )
 }

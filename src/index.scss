@@ -4,9 +4,17 @@
 $colorPrimary: #4692CB;
 $colorSecondary: #A89BE3;
 $colorOptional: #9E67D4;
-$colorText: #040B0E;
-$colorBackground: #F9FBFD;
+$colorText: #ffffff;
+$colorBackground: #000000;
 $colorWarning: rgb(255, 200, 0);
+
+// ---- Mixins ---- //
+@mixin flex($direction, $justify, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
 
 // ---- Reset Defaults ---- //
 * {
@@ -19,7 +27,6 @@ $colorWarning: rgb(255, 200, 0);
 $heightBody: 100svh;
 $heightNav: 3rem;
 $heightFooter: 2rem;
-$widthClamp: clamp(200px, 50%, 400px);
 $transition: all 400ms ease-in-out;
 $outline: $colorSecondary;
 
@@ -31,10 +38,10 @@ body {
   line-height: 1.5;
   color: $colorText;
   background-color: $colorBackground;
-  background-image: url('../public/pexels-luis-leon-2569189.jpg');
+  // background-image: url('../public/pexels-luis-leon-2569189.jpg');
   background-position: bottom;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 
 // ---- Status Message ---- //
@@ -55,13 +62,6 @@ body {
   color: $colorWarning;
 }
 
-// ---- Mixins ---- //
-@mixin flex($direction, $justify, $align) {
-  display: flex;
-  flex-direction: $direction;
-  justify-content: $justify;
-  align-items: $align;
-}
 
 // ---- Navbar ---- //
 nav {
@@ -100,8 +100,8 @@ footer {
   @include flex(row,center,center);
   height: $heightFooter;
   text-align: center;
-  border-top: 1px solid $colorText;
-  border-bottom: 1px solid $colorText;
+  border-top: 1px solid $colorBackground;
+  border-bottom: 1px solid $colorBackground;
   color: $colorBackground;
   background-color: $colorPrimary;
 }
@@ -117,7 +117,7 @@ main {
 .form_login,
 .form_register {
   @include flex(column,center,flex-start);
-  width: $widthClamp;
+  width:  200px;
   border: 1px solid $colorOptional;
   border-radius: 2px;
   padding: 0.5rem 1rem;
@@ -157,7 +157,7 @@ main {
   button[type=submit] {
     font-weight: bold;
     padding: 0.25rem 1rem;
-    margin: 1rem 0;
+    margin-top: 1rem;
     justify-self: center;
     align-self: center;
     border: 1px solid transparent;
@@ -175,7 +175,13 @@ main {
   button[type=submit]:hover,
   button[type=submit]:focus {
     cursor: pointer;
-    border: 1px solid $colorBackground;
+    color: $colorText;
+    border: 1px solid $colorText;
+  }
+  button[type=button]:hover,
+  button[type=button]:focus {
+    cursor: pointer;
+    color: $colorText;
   }
 }
 .form_type {
@@ -196,6 +202,21 @@ main {
 }
 
 // ---- Account Page ---- //
+.goto {
+  padding: 1rem;
+  border-radius: 2px;
+  color: $colorText;
+  border: 1px solid $colorOptional;
+  background-color: $colorPrimary;
+  a {
+    color: $colorBackground;
+    transition: $transition;
+  }
+  a:hover,
+  a:focus {
+    color: $colorText;
+  }
+}
 .acc_page {
   @include flex(column,flex-start,center);
   padding: 0;
@@ -253,11 +274,13 @@ main {
       border: 1px solid $colorBackground;
     }
     button:disabled {
-      display: none;
       cursor: default;
       color: $colorBackground;
       border: 1px solid transparent;
       background-color: $colorSecondary;
+    }
+    button.hide[type=button] {
+      display: none;
     }
     button.show[type=button] {
       display: flex;
@@ -265,3 +288,54 @@ main {
   }
 }
 
+// Admin Page //
+.admin {
+  min-height: calc($heightBody - ($heightNav + $heightFooter));
+  div {
+    margin: 0 1rem;
+    padding: 1rem;
+    border: 1px solid $colorBackground;
+    background-color: $colorSecondary;
+  }
+}
+.admin_search {
+  label {
+    font-weight: bold;
+  }
+}
+.admin_details {
+  span:nth-child(1) {
+    font-weight: bold;
+  }
+}
+
+
+.admin_change {
+  .prompt {
+    @include flex(column,center,center);
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    border: none;
+    background-color: $colorBackground;
+    div {
+      text-align: center;
+      background-color: $colorPrimary;
+    }
+  }
+  .prompt.disable {
+    display: none;
+  }
+  button {
+    margin: 0 1rem;
+  }
+}
+.admin_change {
+  span:nth-child(1) {
+    font-weight: bold;
+  }
+}

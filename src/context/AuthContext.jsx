@@ -28,7 +28,6 @@ export const AuthProvider = ({ children }) => {
         if (error?.response?.status === 403) {
           const newAccessToken = await refreshToken()
           prevConfig.headers.Authorization = newAccessToken
-          return axios(prevConfig)
         }
         return Promise.reject(error)
       })

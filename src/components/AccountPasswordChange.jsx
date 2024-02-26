@@ -14,7 +14,7 @@ const AccountPasswordChange = () => {
   const [changeBtn, setChangeBtn] = useState(true)
 
   // Hooks //
-  const changePass = useChangePass(state.userInfo.username, inputOldPass, inputNewPass)
+  const changePass = useChangePass(state.userInfo._id, inputOldPass, inputNewPass)
 
   // Validation //
   const validNewPass = useValidPass(inputNewPass)
@@ -80,13 +80,14 @@ const AccountPasswordChange = () => {
         {state.formConPassMsg}
       </p>
       <button
+        className={changeBtn === true ? 'show' : 'hide'}
         type="button"
         onClick={(e) => handleEdit(e)}
         disabled={editBtn === true ? true : false}
       >Edit
       </button>
       <button
-        className={changeBtn === false ? 'show' : ''}
+        className={changeBtn === false ? 'show' : 'hide'}
         type="button"
         onClick={(e) => handleChange(e)}
         disabled={validNewPass && validConPass ? false : true}

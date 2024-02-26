@@ -5,6 +5,8 @@ import Home from "./pages/Home"
 import Account from "./pages/Account";
 import { SiteProvider } from "./context/SiteContext";
 import { AuthProvider } from "./context/AuthContext";
+import Admin from "./pages/Admin";
+import { AdminProvider } from "./context/AdminContext";
 
 function App() {
   return (
@@ -21,6 +23,12 @@ function App() {
           <Route exact path="/account" element={<Account />} />
           <Route path="/account/:id" element={<Account />} />
         </Routes>
+        {/* Admin Routes */}
+        <AdminProvider>
+        <Routes>
+          <Route exact path="/admin" element={<Admin />} />
+        </Routes>
+        </AdminProvider>
         </AuthProvider>
         <Footer />
       </SiteProvider>

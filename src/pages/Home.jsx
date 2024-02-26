@@ -8,7 +8,7 @@ const Home = () => {
 
   if (state.isRegistered === true) return (
     <main>
-      <div>
+      <div className='goto'>
         <h1>Registered Successfully</h1>
         <Link to={'/'}
           onClick={() => {

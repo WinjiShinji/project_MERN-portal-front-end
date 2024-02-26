@@ -69,6 +69,11 @@ const siteReducer = (state, action) => {
         ...state,
         formPassType: action.payload
       }
+    case 'deleteMsg':
+      return {
+        ...state,
+        deleteMsg: action.payload
+      }
     case 'regSubBtn':
       return {
         ...state,

@@ -3,7 +3,7 @@ import siteReducer from "./siteReducer";
 
 const SiteContext = createContext({})
 
-// @TODO: aggregate states into single objects 
+// @TODO: aggregate states into objects 
 
 export const SiteProvider = ({ children }) => {
   // Initial Reducer State //
@@ -24,6 +24,7 @@ export const SiteProvider = ({ children }) => {
     formConPassMsg: '',
     formType: 'login',
     formPassType: 'password',
+    deleteMsg: '',
     regSubBtn: 'disabled'
   })
 
