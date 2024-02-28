@@ -12,6 +12,7 @@ export const SiteProvider = ({ children }) => {
     isLoggedIn: false,
     isRegistered: false,
     userInfo: {},
+    admin: false,
     
     // Form Default State //
     formUsername: '',
@@ -34,6 +35,14 @@ export const SiteProvider = ({ children }) => {
       dispatch({ type: 'isLoggedIn', payload: true })
     }
   },[])
+
+  // Logic //
+  useEffect(() => {
+    const roles = state.userInfo.roles || {}
+    if (Object.hasOwn(roles, 'Admin')) {
+      dispatch({ type: 'admin', payload: true })
+    }
+  },[state.userInfo])
 
   return (
     <SiteContext.Provider value={{

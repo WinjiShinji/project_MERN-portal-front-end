@@ -14,6 +14,7 @@ const useLogout = () => {
       navigate('/', { replace: true })
       dispatch({ type: 'formMsg', payload: 'Logged Out' })
       dispatch({ type: 'userInfo', payload: {} })
+      dispatch({ type: 'admin', payload: false })
     } catch (error) {
       console.error(error)
     }

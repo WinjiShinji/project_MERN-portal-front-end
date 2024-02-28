@@ -17,6 +17,11 @@ const siteReducer = (state, action) => {
         ...state,
         userInfo: action.payload
       }
+    case 'admin':
+      return {
+        ...state,
+        admin: action.payload
+      }
 
     // Form State //
     case 'formUsername':

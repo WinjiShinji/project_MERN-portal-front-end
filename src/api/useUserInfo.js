@@ -7,21 +7,18 @@ const useUserInfo = () => {
   const { dispatch } = useContext(SiteContext)
 
   useEffect(() => {
-    const controller = new AbortController()
-    const signal = controller.signal
 
     const getUserInfo = async () => {
       try {
         const res = await axios
-          .get('/account', { signal })
+          .get('/account')
           .then(function (res) {
             return res
           })
           .catch(function (err) {
             console.error(err)
-            return controller.abort()
           })
-        dispatch({ type: 'userInfo', payload: res.data.data})
+        dispatch({ type: 'userInfo', payload: res.data.data })
       } catch (err) {
         console.error(err)
       }

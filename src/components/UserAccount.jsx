@@ -8,7 +8,6 @@ const UserAccount = ({ userId }) => {
 
   // AXIOS: Fetch Account Data //
   useUserInfo()
-  // console.log(state.userInfo)
 
   return (
     <main className="acc_page">

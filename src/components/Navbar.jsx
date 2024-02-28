@@ -8,26 +8,15 @@ const Navbar = () => {
   // State //
   const { state } = useContext(SiteContext)
 
-  // Hooks //
-
   // Events //
   const handleLogout = useLogout()
-
-  // Logic //
-  const admin = () => {
-    if (state.userInfo.roles?.Admin === 5400) {
-      return true
-    } else {
-      return false
-    }
-  }
 
   return (
     <nav>
       <Link to="/">
         <FaHome />
       </Link>
-      {admin() === true
+      {state.admin === true
         ?  <Link to="/admin">Admin</Link>
         : ''
       }
